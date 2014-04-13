@@ -1,4 +1,5 @@
 Crecent::Application.routes.draw do
+  devise_for :users
   resources :daily_expenses
 
   resources :attributes

@@ -28,6 +28,8 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
+        @attribute = Attribute.new(:product_id => @product.id, :size => params[:product][:attributes][:size], :color => params[:product][:attributes][:color], :category => params[:product][:attributes][:category], :price => params[:product][:attributes][:price])
+        @attribute.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -69,6 +71,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params[:product]
+      params.require(:product).permit(:name, :code, :quantity, :price, :size, :color, :category)
     end
 end

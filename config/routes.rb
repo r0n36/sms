@@ -1,4 +1,8 @@
 Crecent::Application.routes.draw do
+  resources :daily_expenses
+
+  resources :attributes
+
   resources :reports
 
   resources :users

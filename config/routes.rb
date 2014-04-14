@@ -1,4 +1,5 @@
 Crecent::Application.routes.draw do
+  get "sessions/new"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :daily_expenses
@@ -12,7 +13,13 @@ Crecent::Application.routes.draw do
   resources :stores
 
   resources :products
-  root :to => 'users#index'
+
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+
+  resources :sessions
+  root :to => "sessions#new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

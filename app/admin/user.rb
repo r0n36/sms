@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-
+  permit_params :name, :email, :password, :password_confirmation, :address, :phone, :role, :store_id
   menu :label => "Users"
   index do
     column 'Name' do |user|

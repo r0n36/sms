@@ -1,0 +1,16 @@
+<!--<form action="" method="post">-->
+  <!--<label for="login">Username:</label>-->
+  <!--<input id="login" name="login" class="text" />-->
+  <!--<label for="pass">Password:</label>-->
+  <!--<input id="pass" name="pass" type="password" class="text" />-->
+  <!--<div class="sep"></div>-->
+  <!--<button type="submit" class="ok">Login</button> <a class="button" href="">Forgotten password?</a>-->
+<!--</form>-->
+<%= form_tag sessions_path do %>
+    <label for="login">Username or Email:</label>
+    <%= text_field_tag :email, params[:email], :id=>"login", :name=>"login", :class=>"text" %>
+    <label for="pass">Password:</label>
+    <%= password_field_tag :password %>
+    <div class="sep"></div>
+    <%= submit_tag "Log in", :class=>"ok" %> <a href="">Forgotten password?</a>
+<% end %>

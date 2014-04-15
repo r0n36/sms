@@ -7,10 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="wrap">
-  <div id="content">
-    <div id="main">
-      <div class="full_w">
+
 
         <!--<div id="user_nav">-->
           <!--<%# if current_user %>-->
@@ -22,17 +19,13 @@
           <!--<%# end %>-->
         <!--</div>-->
         <br>
-        <div style="border: 2px solid red; padding: 5px; width: 50%; margin-left: 15px">
-            <% flash.each do |name, msg| %>
-                <%= content_tag :div, msg, :id => "flash_#{name}" %>
-            <% end %>
-        </div>
-        <%= yield %>
 
-      </div>
-      <div class="footer">&raquo; <a href="#">Don't Know What Am I doing?</a> | Admin Panel</div>
-    </div>
-  </div>
-</div>
+            <% flash.each do |name, msg| %>
+                <div style="border: 2px solid red; padding: 5px; width: 50%; margin-left: 15px">
+                    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                </div>
+            <% end %>
+
+        <%= yield %>
 </body>
 </html>

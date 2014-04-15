@@ -35,7 +35,7 @@
               <th valign="top">Category:</th>
               <td>
                 <%= u.select :category, product_categories,
-                             prompt: 'Select a Category' %>
+                             prompt: 'Select a Category', value: @product.attribute.category %>
               </td>
               <td></td>
             </tr>

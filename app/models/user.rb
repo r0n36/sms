@@ -4,25 +4,29 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :store
+  before_save :encrypt_password
+  attr_accessor :password, :password_salt, :password_hash, :salt
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  def self.authenticate(email, password)
-    user = find_by_email(email)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
+  def self.authenticate(username_or_email="", login_password="")
+    user = User.find_by_email(username_or_email)
+
+    if user && user.match_password(login_password)
+      return user
     else
-      nil
+      return false
     end
   end
 
   def encrypt_password
-    if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
+    self.encrypted_password = BCrypt::Password.create(password) if password.present?
+  end
+
+  def match_password(login_password="")
+    BCrypt::Password.new(self.encrypted_password) == login_password
   end
 end

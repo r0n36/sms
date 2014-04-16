@@ -1,0 +1,14 @@
+<%= semantic_form_for [:admin, @store] do |f| %>
+    <%= f.inputs :name => 'Create Store' do  %>
+        <%= f.input :name  %>
+        <%= f.input :email  %>
+        <%= f.input :phone  %>
+        <%= f.input :location  %>
+        <%#= f.input :store_id, :as => :select  %>
+
+        <%= f.actions do %>
+            <%= f.action :submit, :as => :button %>
+            <%= f.action :cancel, :as => :link %>
+        <% end %>
+    <% end %>
+<% end  %>

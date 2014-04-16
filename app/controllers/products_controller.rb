@@ -44,6 +44,12 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
+        @attribute = Attribute.find_by_product_id @product.id
+        @attribute.size= params[:product][:attributes][:size]
+        @attribute.color= params[:product][:attributes][:color]
+        @attribute.category= params[:product][:attributes][:category]
+        @attribute.price= params[:product][:attributes][:price]
+        @attribute.save
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else

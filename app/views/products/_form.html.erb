@@ -11,6 +11,7 @@
         </div>
     <% end %>
     <%= f.fields_for :attributes do |u|%>
+    <%= f.fields_for :stores do |s|%>
 <div id="content">
     <div id="content-table-inner">
 
@@ -73,6 +74,15 @@
             </tr>
 
             <tr>
+              <th valign="top">Store:</th>
+              <td>
+                <%= s.select :store_name, store_locations,
+                             prompt: 'Select a Store' %>
+              </td>
+              <td></td>
+            </tr>
+
+            <tr>
               <th>Image 1:</th>
               <td><input type="file" class="file_1" /></td>
               <td>
@@ -80,20 +90,6 @@
                 <div class="bubble-inner">JPEG, GIF 5MB max per image</div>
                 <div class="bubble-right"></div>
               </td>
-            </tr>
-            <tr>
-              <th>Image 2:</th>
-              <td>  <input type="file" class="file_1" /></td>
-              <td><div class="bubble-left"></div>
-                <div class="bubble-inner">JPEG, GIF 5MB max per image</div>
-                <div class="bubble-right"></div></td>
-            </tr>
-            <tr>
-              <th>Image 3:</th>
-              <td><input type="file" class="file_1" /></td>
-              <td><div class="bubble-left"></div>
-                <div class="bubble-inner">JPEG, GIF 5MB max per image</div>
-                <div class="bubble-right"></div></td>
             </tr>
 
           </table>
@@ -108,5 +104,6 @@
 
 </div>
 </div>
+<% end %>
 <% end %>
 <% end %>
